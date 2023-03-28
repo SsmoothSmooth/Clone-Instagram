@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
-function Header(){
+function Header(props){
 
-    // Verificar em qual status o usuário se encontra logado ou não
-    const [user, setUser] = useState("Smooth");
+    useEffect(() => {
+        props.setUser("Smooth")
+    })
+    
 
     return(
         <div className="header">
@@ -13,9 +15,9 @@ function Header(){
                 </div> 
 
                 {
-                    (user)?
+                    (props.user)?
                     <div className="header_logadoInfo">
-                    <span>Hi, <b>{user}</b></span>
+                    <span>Hi, <b>{props.user}</b></span>
                     <a href="#">Postar</a>
                     </div>
                     :
