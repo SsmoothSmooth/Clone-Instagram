@@ -1,10 +1,36 @@
 import { useEffect, useState } from 'react';
+import {auth} from './firebase.js'
 
 function Header(props){
 
     useEffect(() => {
         
     })
+
+    function criarConta(e){
+        e.preventDefault();
+        let email = document.getElementById('email-cadastro').value;
+        let username = document.getElementById('username-cadastro').value;
+        let password = document.getElementById('senha-cadastro').value;
+        
+        //Criar conta firebase
+        auth.createUserWithEmailAndPassword(email, password)
+        .then((authUser)=>{
+            authUser.user.updateProfile({
+                displayName:username
+            })
+            alert("Suceesso !");
+
+            let modal = document.querySelector('.modalCriarConta');
+            modal.style.display = "none"; 
+        }).catch((error)=>{
+            alert(error.message);
+        })
+        ;
+
+
+
+    }
     
     function abrirModalCriarConta(e){
         e.preventDefault();
@@ -29,10 +55,10 @@ function Header(props){
                 <div className="formCriarConta">
                     <div onClick={()=>fecharModalCriar()} className="clsoe-modal-criar">X</div>
                     <h2>Criar conta</h2>
-                    <form>
-                        <input type="text" placeholder="Seu email" />
-                        <input type="text" placeholder="Username" />
-                        <input type="password" placeholder="Digite a senha" />
+                    <form onSubmit={(e)=> criarConta(e)}> 
+                        <input id="email-cadastro" type="text" placeholder="Seu email" />
+                        <input id="username-cadastro" type="text" placeholder="Username" />
+                        <input id="senha-cadastro" type="password" placeholder="Digite a senha" />
                         <input type="submit" value="Criar conta !" />
                         
                     </form>
