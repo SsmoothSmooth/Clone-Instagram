@@ -5,7 +5,7 @@ import Header from './Header';
 
 function App() {
 
-  const [user, setUser] = useState("Logado");
+  const [user, setUser] = useState(null);
 
   useEffect(()=>{
   
