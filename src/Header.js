@@ -25,11 +25,22 @@ function Header(props){
             modal.style.display = "none"; 
         }).catch((error)=>{
             alert(error.message);
+        });
+    }
+
+    function logar(e){
+        e.preventDefault();
+        let email = document.getElementById('email-login').value;
+        let senha = document.getElementById('senha-login').value;
+
+        // Login com firebase
+        auth.signInWithEmailAndPassword(email, senha)
+        .then((auth)=>{
+            props.setUser(auth.user.displayName);
+            alert('Sucesso !')
+        }).catch((err)=>{
+            alert(err.message);
         })
-        ;
-
-
-
     }
     
     function abrirModalCriarConta(e){
@@ -79,9 +90,9 @@ function Header(props){
                     :
 
                     <div className="header_loginForm">
-                    <form>
-                        <input type="text" placeholder="Login.."/>
-                        <input type="password" placeholder="Senha.."/>
+                    <form onSubmit={(e)=>logar(e)}>
+                        <input id="email-login" type="text" placeholder="Login.."/>
+                        <input id="senha-login" type="password" placeholder="Senha.."/>
                         <input type="submit" name="acao" value="Logar!"/>
                     </form>
 
