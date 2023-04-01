@@ -12,7 +12,6 @@ function App() {
 
   useEffect(()=>{
 
-    // Atualiza o status dos post conforme a alteração nos post
     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(function(snapshot){
       
       setPosts(snapshot.docs.map(function(document){
@@ -31,7 +30,7 @@ function App() {
         posts.map(function(val){
 
           return (
-            
+
             <Post info={val.info} id={val.id} />
 
           )
