@@ -1,5 +1,5 @@
 import './App.css';
-import {db} from './firebase.js';
+import {db, auth} from './firebase.js';
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import Post from './Post';
@@ -11,6 +11,10 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(()=>{
+
+    auth.onAuthStateChanged(function(val){
+      setUser(val.displayName);
+    })
 
     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(function(snapshot){
       
