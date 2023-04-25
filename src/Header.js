@@ -43,6 +43,7 @@ function Header(props){
         .then((auth)=>{
             props.setUser(auth.user.displayName);
             alert('Sucesso !')
+            window.location.href = "/";
         }).catch((err)=>{
             alert(err.message);
         })
@@ -75,6 +76,14 @@ function Header(props){
         let modal = document.querySelector('.modalUpload');
         modal.style.display = "none";
 
+    }
+
+    function deslogar(e){
+        e.preventDefault();
+        auth.signOut().then(function(val){
+          props.setUser(null);  
+          window.location.href = "/";
+        })
     }
 
     function uploadPost(e){
@@ -154,6 +163,7 @@ function Header(props){
                     <div className="header_logadoInfo">
                     <span>Hi, <b>{props.user}</b></span>
                     <a onClick={(e)=>abrirModalUpload(e)} href="#">Postar</a>
+                    <a onClick={(e)=>deslogar(e)}>Deslogar</a>
                     </div>
                     :
 
