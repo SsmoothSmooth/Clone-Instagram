@@ -114,6 +114,7 @@ function Header(props){
                 alert("Upload Finalizado !");
 
                 document.getElementById("form-upload").reset();
+                fecharModalUpload();
 
             })
         })
