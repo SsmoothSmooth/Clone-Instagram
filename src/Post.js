@@ -1,8 +1,21 @@
+import {db} from './firebase.js'
+import { useEffect, useState } from 'react';
+
 function Post(props){
 
     function comentar(id, e){
         e.preventDefault();
-        alert('Comentario do -> '+ id);
+
+        let comentarioAtual = document.querySelector('#comentario-'+id).value;
+
+        db.collection('posts').doc(id).collection('comentarios').add({
+            nome: props.user,
+            comentario: comentarioAtual
+        });
+
+        alert('Comentario feito com sucesso !');
+
+        document.querySelector('#comentario-'+id).value = "";
     }
 
     return (
@@ -11,7 +24,7 @@ function Post(props){
             <p><b>{props.info.userName}</b>: {props.info.titulo}</p>
         
             <form onSubmit={(e)=>comentar(props.id,e)}> 
-            <textarea></textarea>
+            <textarea id={"comentario-"+props.id}></textarea>
             <input type="submit" value="Comentar" />
             </form>
             
