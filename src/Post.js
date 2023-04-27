@@ -1,4 +1,5 @@
-import {db} from './firebase.js'
+import {db} from './firebase.js';
+import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 
 function Post(props){
@@ -6,7 +7,7 @@ function Post(props){
     const [comentarios, setComentarios] = useState([]);
 
     useEffect(() => {
-        db.collection('posts').doc(props.id).collection('comentarios').onSnapshot(function(snapshot){
+        db.collection('posts').doc(props.id).collection('comentarios').orderBy('timestamp','asc').onSnapshot(function(snapshot){
             setComentarios(snapshot.docs.map(function(document){
                 return {id:document.id, info:document.data()}
               }))
@@ -20,7 +21,8 @@ function Post(props){
 
         db.collection('posts').doc(id).collection('comentarios').add({
             nome: props.user,
-            comentario: comentarioAtual
+            comentario: comentarioAtual,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 
         alert('Comentario feito com sucesso !');
