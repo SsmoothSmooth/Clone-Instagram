@@ -6,14 +6,16 @@ import Post from './Post';
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
   const [posts, setPosts] = useState([]);
 
   useEffect(()=>{
 
     auth.onAuthStateChanged(function(val){
-      setUser(val.displayName);
+      if(val != null){
+        setUser(val.displayName);
+      }
     })
 
     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(function(snapshot){
