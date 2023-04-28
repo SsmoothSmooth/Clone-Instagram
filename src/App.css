@@ -214,3 +214,17 @@ body {
     border: 0;
     padding: 8px 10px;
 }
+
+.coments{
+    margin-left: 20px;
+}
+
+.coments h2 {
+    border-bottom: 1px solid #4b4b4b;
+    padding: 8px 0;
+    color: #4b4b4b;
+}
+
+.coment-single p{
+    font-size: 14px;
+}
