@@ -36,6 +36,7 @@ function Post(props){
             <p><b>{props.info.userName}</b>: {props.info.titulo}</p>
 
             <div className="coments">
+                <h2>Últimos comentarios:</h2>
 
                 {
                     comentarios.map(function(val){
@@ -49,10 +50,15 @@ function Post(props){
 
             </div>
         
-            <form onSubmit={(e)=>comentar(props.id,e)}> 
-            <textarea id={"comentario-"+props.id}></textarea>
-            <input type="submit" value="Comentar" />
-            </form>
+            {
+                (props.user)?
+                <form onSubmit={(e)=>comentar(props.id,e)}> 
+                    <textarea id={"comentario-"+props.id}></textarea>
+                    <input type="submit" value="Comentar" />
+                </form>
+                :
+                <div></div>
+            }
             
         </div>
     )
