@@ -26,6 +26,10 @@ body {
     width: 50%;
 }
 
+.header_logo img{
+    width: 180px;
+}
+
 .header_loginForm {
     width: 50%;
     text-align: right;

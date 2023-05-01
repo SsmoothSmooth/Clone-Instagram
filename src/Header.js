@@ -156,7 +156,7 @@ function Header(props){
 
             <div className="center">
                 <div className="header_logo">
-                    <a href='#'><img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"/></a>
+                    <a href='#'><img src="https://i.ibb.co/DwhT1jS/Logo-Smooth-Gram-Type-01.png"/></a>
                 </div> 
 
                 {
