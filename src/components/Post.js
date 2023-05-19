@@ -1,4 +1,4 @@
-import {db} from './firebase.js';
+import {db} from '../firebase.js';
 import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 
@@ -32,8 +32,8 @@ function Post(props){
 
     return (
         <div className="postSingle">
-            <img src={props.info.image} />
             <p><b>{props.info.userName}</b>: {props.info.titulo}</p>
+            <img src={props.info.image} />
 
             <div className="coments">
                 <h2>Últimos comentarios:</h2>
