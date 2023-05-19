@@ -1,8 +1,8 @@
 import './App.css';
 import {db, auth} from './firebase.js';
 import { useEffect, useState } from 'react';
-import Header from './Header';
-import Post from './Post';
+import Header from './components/headers/Header';
+import Post from './components/Post';
 
 function App() {
 
