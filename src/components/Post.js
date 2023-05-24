@@ -7,6 +7,7 @@ function Post(props){
     const [comentarios, setComentarios] = useState([]);
 
     useEffect(() => {
+
         db.collection('posts').doc(props.id).collection('comentarios').orderBy('timestamp','asc').onSnapshot(function(snapshot){
             setComentarios(snapshot.docs.map(function(document){
                 return {id:document.id, info:document.data()}
@@ -16,7 +17,6 @@ function Post(props){
 
     function comentar(id, e){
         e.preventDefault();
-
         let comentarioAtual = document.querySelector('#comentario-'+id).value;
 
         db.collection('posts').doc(id).collection('comentarios').add({
@@ -25,19 +25,18 @@ function Post(props){
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        alert('Comentario feito com sucesso !');
-
         document.querySelector('#comentario-'+id).value = "";
     }
 
+    
     return (
         <div className="postSingle">
-            <p><b>{props.info.userName}</b>: {props.info.titulo}</p>
+            <p><b>{props.info.userName}</b>:{props.info.titulo}</p>
             <img src={props.info.image} />
 
             <div className="coments">
                 <h2>Últimos comentarios:</h2>
-
+            
                 {
                     comentarios.map(function(val){
                         return(
@@ -47,13 +46,14 @@ function Post(props){
                         )
                     })
                 }
-
             </div>
         
             {
                 (props.user)?
+                
                 <form onSubmit={(e)=>comentar(props.id,e)}> 
-                    <textarea id={"comentario-"+props.id}></textarea>
+                    <textarea id={"comentario-"+ props.id}></textarea>
+                    {console.log(props.id)}
                     <input type="submit" value="Comentar" />
                 </form>
                 :
