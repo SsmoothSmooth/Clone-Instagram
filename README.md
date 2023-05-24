@@ -91,12 +91,12 @@ O SmoothGram é uma rede social visual que permite os usuários façam postagem 
     Sistema de curtidas
 
 # Conceitos e técnicas aplicados
-- Design responsivo e adaptativo
-- modal
+- Design responsivo e adaptativo**
+- Modal
 - Autenticação e autorização de usuários
 - Armazenamento e gerenciamento de dados em nuvem
 - Exibição de imagens e conteúdo multimídia
-- SOLID**
+- Estrutura Type-based
 - Uso de bibliotecas e frameworks de desenvolvimento web
 
 # Como executar o projeto
